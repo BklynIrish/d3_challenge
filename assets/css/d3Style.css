@@ -13,13 +13,13 @@
 
 .inactive {
     font-weight: lighter;
-    fill: #72dfee;
+    fill: #2186da;
     transition: fill 0.3s ease-out;
     text-anchor: middle;
 }
 
 .inactive:hover {
-    fill: #000;
+    fill: rgba(177, 9, 243, 0.925);
     cursor: pointer;
 }
 
@@ -44,28 +44,21 @@
 
 .d3-tip {
     padding: 6px;
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1;
     line-height: 1.5em;
-    color: rgba(16, 173, 235, 0.863);
+    color: rgba(31, 7, 248, 0.863);
     text-align: center;
     text-transform: capitalize;
-    background: rgba(0, 0, 0, 0.8);
-    border-radius: 4px;
+    background: rgba(173, 244, 245, 0.993)
+}
+
+.aText {
+    font-size: 14px;
 }
 
 
-/* Mobile Rules */
-
-@media screen and (max-width: 530px) {
-    .stateText {
-        display: none;
-    }
-    .aText {
-        font-size: 14px;
-    }
 }
-
 @media screen and (max-width: 400px) {
     .aText {
         font-size: 13px;
