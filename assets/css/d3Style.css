@@ -6,14 +6,14 @@
 
 .active {
     font-weight: bold;
-    fill: rgba(0, 0, 0, 0.925);
+    fill: rgba(32, 9, 243, 0.925);
     transition: fill 0.3s ease-out;
     text-anchor: middle;
 }
 
 .inactive {
     font-weight: lighter;
-    fill: #3b4042;
+    fill: #72dfee;
     transition: fill 0.3s ease-out;
     text-anchor: middle;
 }
@@ -28,12 +28,12 @@
 
 .stateText {
     font-family: sans-serif;
-    fill: rgb(8, 1, 1);
+    fill: rgb(28, 6, 177);
     text-anchor: middle;
 }
 
 .stateCircle {
-    fill: #96f11f;
+    fill: #f80be4;
     stroke: #0f0e01;
 }
 
@@ -47,7 +47,7 @@
     font-size: 12px;
     line-height: 1;
     line-height: 1.5em;
-    color: rgba(196, 213, 216, 0.863);
+    color: rgba(16, 173, 235, 0.863);
     text-align: center;
     text-transform: capitalize;
     background: rgba(0, 0, 0, 0.8);
