@@ -38,7 +38,7 @@ var chartGroup = svg.append("g")
 
 var primaryXAxis = "poverty";
 var primaryYAxis = "obesity";
-
+console.log("primary xAxis", primaryXAxis);
 console.log("primary yAxis", primaryYAxis);
 
 function xScale(healthData, primaryXAxis) {
@@ -175,7 +175,7 @@ d3.csv("./assets/data/data.csv").then(function(healthData, err) {
         console.log("healthData", healthData);
         console.log([healthData]);
 
-        //tidy data to make sure it is all numbers
+        //transforming data to numerical values? i hope
 
         healthData.forEach(function(data) {
             data.poverty = +data.poverty;
@@ -195,15 +195,15 @@ d3.csv("./assets/data/data.csv").then(function(healthData, err) {
             data.smokesHigh = +data.smokesHigh
 
         })
-        console.log("check")
-            // create x and y scales
+
+        // create x and y scales
 
         var xLinearScale = xScale(healthData, primaryXAxis)
 
         var yLinearScale = yScale(healthData, primaryYAxis)
 
         // Create axis functions
-        console.log("check1")
+
         var bottomAxis = d3.axisBottom(xLinearScale);
 
         var leftAxis = d3.axisLeft(yLinearScale);
@@ -247,48 +247,46 @@ d3.csv("./assets/data/data.csv").then(function(healthData, err) {
         var circlesGroup = updateToolTip(primaryXAxis, primaryYAxis, circlesGroup);
         // Append axes titles
         //need to make groups for each of the sets of labels
-
         var xLabelsGroup = chartGroup.append("g")
             .attr("transform", `translate(${width / 2}, ${height + margin.top - 10})`)
 
         var povertyLabel = xLabelsGroup.append("text")
-            // .attr("transform", `translate(${width / 2}, ${height + margin.top - 20})`)
             .classed("active", true)
-            .attr("value", "poverty") // value to grab for event listener
-            .text("In Poverty (%)");
+            .attr("value", "poverty")
+            .text("(%) In Poverty ");
 
         var ageLabel = xLabelsGroup.append("text")
             .attr("dy", "1.5em")
-            .attr("value", "age") // value to grab for event listener
+            .attr("value", "age")
             .classed("inactive", true)
-            .text("Age (Median)");
+            .text("Median Age");
 
         var incomeLabel = xLabelsGroup.append("text")
             .attr("dy", "3em")
-            .attr("value", "income") // value to grab for event listener
+            .attr("value", "income")
             .classed("inactive", true)
-            .text("Household Income (Median)");
+            .text("Median Household Income");
 
         var yLabelsGroup = chartGroup.append("g")
             .attr("transform", `translate( ${0 - margin.left + 70}, ${0 + height / 2} )` + " rotate(-90)")
 
         var obesityLabel = yLabelsGroup.append("text")
             .classed("active", true)
-            .attr("value", "obesity") // value to grab for event listener
-            .text("Obesity (%)");
+            .attr("value", "obesity")
+            .text("(%) Obesity");
 
         var smokesLabel = yLabelsGroup.append("text")
             .classed("inactive", true)
-            .attr("value", "smokes") // value to grab for event listener
+            .attr("value", "smokes")
             .attr("dy", "-1.5em")
-            .text("Smokes (%)");
+            .text("(%) Smokers");
 
         var healthcareLabel = yLabelsGroup.append("text")
             .classed("inactive", true)
-            .attr("value", "healthcare") // value to grab for event listener
+            .attr("value", "healthcare")
             .attr("dy", "-3em")
-            .text("Lacks Healthcare (%)");
-        console.log("code?");
+            .text("(%) Lacking Healthcare");
+
 
         // make x-axis active and update all data based on selection and change look of axis
         xLabelsGroup.selectAll("text")
@@ -300,22 +298,22 @@ d3.csv("./assets/data/data.csv").then(function(healthData, err) {
                     // replaces primaryXAxis with value
                     primaryXAxis = value;
                     console.log("primaryXAxis", primaryXAxis);
-                    //console.log("xAxis", xAxis)
+
 
                     // functions here found above csv import
                     // updates x scale for new data
                     xLinearScale = xScale(healthData, primaryXAxis);
-                    console.log("herer1")
-                        // updates x axis with transition
+
+                    // updates x axis with transition
                     xAxis = createXAxis(xLinearScale, xAxis);
-                    console.log("herer2")
-                        // updates circles with new x values
+
+                    // updates circles with new x values
                     circlesGroup = createXCircles(circlesGroup, xLinearScale, primaryXAxis, yLinearScale);
 
                     console.log("primaryYAxis =", primaryYAxis);
                     // updates tooltips with new info
                     circlesGroup = updateToolTip(primaryXAxis, primaryYAxis, circlesGroup);
-                    console.log("herer4");
+
                     // changes classes to change bold text
                     if (primaryXAxis === "poverty") {
                         povertyLabel
@@ -370,17 +368,17 @@ d3.csv("./assets/data/data.csv").then(function(healthData, err) {
                 // functions here found above csv import
                 // updates x scale for new data
                 yLinearScale = yScale(healthData, primaryYAxis);
-                console.log("herer1");
+
                 // updates x axis with transition
                 yAxis = createYAxis(yLinearScale, yAxis);
-                console.log("herer2");
+
                 // updates circles with new x values
                 circlesGroup = createYCircles(circlesGroup, yLinearScale, primaryYAxis, xLinearScale);
 
                 console.log("primaryXAxis =", primaryXAxis);
                 // updates tooltips with new info
                 circlesGroup = updateToolTip(primaryXAxis, primaryYAxis, circlesGroup);
-                console.log("herer4");
+
                 // changes classes to change bold text
                 if (primaryYAxis === "obesity") {
                     obesityLabel
